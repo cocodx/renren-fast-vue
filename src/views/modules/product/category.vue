@@ -12,6 +12,7 @@
              node-key="catId" :default-expanded-keys="expandedKey"
              :draggable="draggable"
              :allow-drop="allowDrop"
+             :allow-drag="allowDrag"
              @node-drop="handleDrop"
              ref="menuTree">
 
@@ -43,8 +44,8 @@
           <el-input v-model="category.productUnit" autocomplete="off"></el-input>
         </el-form-item>
       </el-form>
-      <el-button @click="dialogVisible = false">取 消</el-button>
       <el-button type="primary" @click="submitData">确 定</el-button>
+      <el-button @click="dialogVisible = false">取 消</el-button>
     </el-dialog>
   </div>
 
@@ -86,6 +87,11 @@
           console.log("成功获取到菜单数据", data.data)
           this.menus = data.data
         })
+      },
+      allowDrag(draggingNode){
+        console.log("判断节点能够被拖动：",draggingNode)
+        // return draggingNode.data.label.indexOf('三级 3-2-2') === -1;
+        return true
       },
       batchDelete(){
         let catIds = []
@@ -184,16 +190,17 @@
         //1、被拖动的当前节点以及所在的父节点总层数不能大于3
         //1)、被拖动的当前节点的总层数
         console.log("allowDrop:",draggingNode,dropNode,type)
-        this.countNodeLevel(draggingNode);
-        //当前正在拖动的节点+父节点所在的深度不大于3
-        console.log("深度 this maxLevel:",this.maxLevel);
-        let deep = Math.abs(this.maxLevel - draggingNode.level) + 1;
-        if(type == "inner"){
-          console.log(`this.maxLevel:${this.maxLevel};draggingNode.data.catLevel:${draggingNode.data.catLevel};dropNode.level:${dropNode.level}`)
-          return deep + deep+dropNode.level <=3
-        }else{
-          return deep+dropNode.parent.level <=3
-        }
+        return true
+        // this.countNodeLevel(draggingNode);
+        // //当前正在拖动的节点+父节点所在的深度不大于3
+        // console.log("深度 this maxLevel:",this.maxLevel);
+        // let deep = Math.abs(this.maxLevel - draggingNode.level) + 1;
+        // if(type == "inner"){
+        //   console.log(`this.maxLevel:${this.maxLevel};draggingNode.data.catLevel:${draggingNode.data.catLevel};dropNode.level:${dropNode.level}`)
+        //   return deep + deep+dropNode.level <=3
+        // }else{
+        //   return deep+dropNode.parent.level <=3
+        // }
       },
       countNodeLevel(node){
         //找到所有的子节点，求出最大深度
