@@ -50,9 +50,13 @@ useEslint: false
 ***
 ##### 三级分类笔记
 draggable: 表示 是否开启拖拽功能。boolean类型
+
 allow-drag: 表示 判断节点能否被拖拽 如果没有设置是不能拖动的啊，设置为true就好了
+
 allow-drop: 表示 拖拽节点之后能否被放置。boolean类型【三级分类条件，分级】
+
 node-drop: 表示 拖拽成功之后触发的事件。update更新节点
+
 
 
 
