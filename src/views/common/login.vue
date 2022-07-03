@@ -79,6 +79,7 @@
                 'captcha': this.dataForm.captcha
               })
             }).then(({data}) => {
+              console.log("登录返回data：",data)
               if (data && data.code === 0) {
                 this.$cookie.set('token', data.token)
                 this.$router.replace({ name: 'home' })
