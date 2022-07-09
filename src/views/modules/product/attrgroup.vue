@@ -109,6 +109,31 @@ export default {
     treenodeClick(data,node,component){
       console.log("感知到category的节点被点击：",data,node,component)
       console.log("刚才被点击的菜单id：",data.catId)
+      if (node.level == 3){
+        this.catId = data.catId;
+        this.getDataList()
+      }
+    },
+    getDataList(){
+      this.dataListLoading=true;
+      this.$http({
+        url: this.$http.adornUrl(`/product/attrgroup/list/${this.catId}`),
+        method: "get",
+        params: this.$http.adornParams({
+          page: this.pageIndex,
+          limit: this.pageSize,
+          key: this.dataForm.key
+        })
+      }).then(({ data }) =>{
+        if (data && data.code === 0) {
+          this.dataList = data.page.list
+          this.totalPage = data.page.totalCount
+        } else {
+          this.dataList = []
+          this.totalPage = 0
+        }
+        this.dataListLoading = false
+      })
     }
   }
 }
