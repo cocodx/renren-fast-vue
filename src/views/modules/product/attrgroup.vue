@@ -13,12 +13,10 @@
               <el-button @click="getDataList()">查询</el-button>
               <el-button type="success" @click="getAllDataList()">查询全部</el-button>
               <el-button
-                v-if="isAuth('product:attrgroup:save')"
                 type="primary"
                 @click="addOrUpdateHandle()"
               >新增</el-button>
               <el-button
-                v-if="isAuth('product:attrgroup:delete')"
                 type="danger"
                 @click="deleteHandle()"
                 :disabled="dataListSelections.length <= 0"
@@ -134,6 +132,13 @@ export default {
         }
         this.dataListLoading = false
       })
+    },
+    addOrUpdateHandle(id){
+      console.log("打开新增和修改的组件")
+      this.addOrUpdateVisible = true;
+      this.$nextTick(() => {
+        this.$refs.addOrUpdate.init(id);
+      });
     }
   }
 }
