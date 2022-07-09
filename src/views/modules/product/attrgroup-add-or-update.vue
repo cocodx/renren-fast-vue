@@ -66,7 +66,7 @@ export default {
         sort: "",
         descript: "",
         icon: "",
-        catelogIds: [],
+        catelogPath: [],
         catelogId: 0
       },
       dataRule: {
@@ -87,7 +87,7 @@ export default {
 
   methods: {
     dialogClose(){
-      this.catelogPath = [];
+      this.dataForm.catelogPath = [];
     },
     getCategorys() {
       this.$http({
@@ -117,7 +117,7 @@ export default {
               this.dataForm.descript = data.attrGroup.descript;
               this.dataForm.icon = data.attrGroup.icon;
               this.dataForm.catelogId = data.attrGroup.catelogId;
-              //查出catelogId的完整路径
+              //回显 查出catelogId的完整路径
               this.dataForm.catelogPath =  data.attrGroup.catelogPath;
             }
           });
@@ -142,7 +142,7 @@ export default {
               sort: this.dataForm.sort,
               descript: this.dataForm.descript,
               icon: this.dataForm.icon,
-              catelogId: this.dataForm.catelogIds[this.dataForm.catelogIds.length-1]
+              catelogId: this.dataForm.catelogPath[this.dataForm.catelogPath.length-1]
             })
           }).then(({ data }) => {
             if (data && data.code === 0) {

@@ -140,6 +140,9 @@ export default {
         //
         this.$refs.addOrUpdate.init(id);
       });
+    },
+    created() {
+      this.getDataList()
     }
   }
 }
