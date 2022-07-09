@@ -102,6 +102,10 @@ export default {
       relationVisible: false
     }
   },
+  // 在vue对象存活的情况下，进入当前存在activated()函数的页面时，一进入页面就触发；可用于初始化页面数据等
+  activated() {
+    this.getDataList();
+  },
   methods:{
     //感知树节点被点击
     treenodeClick(data,node,component){
@@ -111,6 +115,10 @@ export default {
         this.catId = data.catId;
         this.getDataList()
       }
+    },
+    getAllDataList(){
+      this.catId = 0;
+      this.getDataList();
     },
     getDataList(){
       this.dataListLoading=true;
@@ -140,10 +148,6 @@ export default {
         //
         this.$refs.addOrUpdate.init(id);
       });
-    },
-    created() {
-      console.log("调用getDataList方法");
-      this.getDataList()
     }
   }
 }
