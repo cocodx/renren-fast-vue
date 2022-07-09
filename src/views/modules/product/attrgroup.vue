@@ -12,15 +12,8 @@
             <el-form-item>
               <el-button @click="getDataList()">查询</el-button>
               <el-button type="success" @click="getAllDataList()">查询全部</el-button>
-              <el-button
-                type="primary"
-                @click="addOrUpdateHandle()"
-              >新增</el-button>
-              <el-button
-                type="danger"
-                @click="deleteHandle()"
-                :disabled="dataListSelections.length <= 0"
-              >批量删除</el-button>
+              <el-button type="primary" @click="addOrUpdateHandle()">新增</el-button>
+              <el-button type="danger" @click="deleteHandle()" :disabled="dataListSelections.length <= 0">批量删除</el-button>
             </el-form-item>
           </el-form>
           <el-table
@@ -46,11 +39,7 @@
             >
               <template slot-scope="scope">
                 <el-button type="text" size="small" @click="relationHandle(scope.row.attrGroupId)">关联</el-button>
-                <el-button
-                  type="text"
-                  size="small"
-                  @click="addOrUpdateHandle(scope.row.attrGroupId)"
-                >修改</el-button>
+                <el-button type="text" size="small" @click="addOrUpdateHandle(scope.row.attrGroupId)">修改</el-button>
                 <el-button type="text" size="small" @click="deleteHandle(scope.row.attrGroupId)">删除</el-button>
               </template>
             </el-table-column>
@@ -84,8 +73,9 @@
    */
 import Category from '../common/category'
 import AddOrUpdate from "./attrgroup-add-or-update";
+import RelationUpdate from "./attr-group-relation";
 export default {
-  components:{Category,AddOrUpdate},
+  components:{Category,AddOrUpdate,RelationUpdate},
   data(){
     return{
       catId: 0,
@@ -107,6 +97,13 @@ export default {
     this.getDataList();
   },
   methods:{
+    //处理分组与属性的关联
+    relationHandle(groupId){
+      this.relationVisible = true;
+      this.$nextTick(() => {
+        this.$refs.relationUpdate.init(groupId);
+      });
+    },
     //感知树节点被点击
     treenodeClick(data,node,component){
       console.log("感知到category的节点被点击：",data,node,component)
