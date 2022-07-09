@@ -30,7 +30,9 @@
         <!-- :catelogPath="catelogPath"自定义绑定的属性，可以给子组件传值 -->
 <!--        <category-cascader :catelogPath.sync="catelogPath"></category-cascader> @change="handleChange"-->
         <el-cascader
-          v-model="dataForm.catelogIds"
+          filterable
+          placeholder="试试搜索：指南"
+          v-model="dataForm.catelogPath"
           :options="categorys"
           :props="props"
           ></el-cascader>
@@ -116,7 +118,7 @@ export default {
               this.dataForm.icon = data.attrGroup.icon;
               this.dataForm.catelogId = data.attrGroup.catelogId;
               //查出catelogId的完整路径
-              this.catelogPath =  data.attrGroup.catelogPath;
+              this.dataForm.catelogPath =  data.attrGroup.catelogPath;
             }
           });
         }

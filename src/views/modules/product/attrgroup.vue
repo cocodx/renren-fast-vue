@@ -137,6 +137,7 @@ export default {
       console.log("打开新增和修改的组件")
       this.addOrUpdateVisible = true;
       this.$nextTick(() => {
+        //
         this.$refs.addOrUpdate.init(id);
       });
     }
