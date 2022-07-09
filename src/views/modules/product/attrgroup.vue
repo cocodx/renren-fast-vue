@@ -27,9 +27,9 @@
             :data="dataList"
             border
             v-loading="dataListLoading"
-            @selection-change="selectionChangeHandle"
             style="width: 100%;"
           >
+<!--            @selection-change="selectionChangeHandle"-->
             <el-table-column type="selection" header-align="center" align="center" width="50"></el-table-column>
             <el-table-column prop="attrGroupId" header-align="center" align="center" label="分组id"></el-table-column>
             <el-table-column prop="attrGroupName" header-align="center" align="center" label="组名"></el-table-column>
@@ -55,9 +55,9 @@
               </template>
             </el-table-column>
           </el-table>
+<!--          @current-change="currentChangeHandle"-->
+<!--          @size-change="sizeChangeHandle"-->
           <el-pagination
-            @size-change="sizeChangeHandle"
-            @current-change="currentChangeHandle"
             :current-page="pageIndex"
             :page-sizes="[10, 20, 50, 100]"
             :page-size="pageSize"
@@ -142,6 +142,7 @@ export default {
       });
     },
     created() {
+      console.log("调用getDataList方法");
       this.getDataList()
     }
   }
