@@ -1,23 +1,3 @@
-### 为了项目的长远发展，renren-fast-vue已迁移到 【[renren-ui](https://gitee.com/renrenio/renren-ui)】里面，以后会在renren-ui里面进行更新维护，感谢支持！ :smiley:
-<br>
-
-## renren-fast-vue
-- renren-fast-vue基于vue、element-ui构建开发，实现[renren-fast](https://gitee.com/renrenio/renren-fast)后台管理前端功能，提供一套更优的前端解决方案
-- 前后端分离，通过token进行数据交互，可独立部署
-- 主题定制，通过scss变量统一一站式定制
-- 动态菜单，通过菜单管理统一管理访问路由
-- 数据切换，通过mock配置对接口数据／mock模拟数据进行切换
-- 发布时，可动态配置CDN静态资源／切换新旧版本
-- 演示地址：[http://demo.open.renren.io/renren-fast](http://demo.open.renren.io/renren-fast) (账号密码：admin/admin)
-
-## 说明文档
-项目开发、部署等说明都在[wiki](https://github.com/renrenio/renren-fast-vue/wiki)中。
-
-
-## 更新日志
-每个版本的详细更改都记录在[release notes](https://github.com/renrenio/renren-fast-vue/releases)中。
-
-
 ##### 开发基础知识
 ***
 let 声明变量
@@ -58,5 +38,18 @@ allow-drop: 表示 拖拽节点之后能否被放置。boolean类型【三级分
 node-drop: 表示 拖拽成功之后触发的事件。update更新节点
 
 
+#### Vue知识点
 
+##### props
+组件实例的作用域是孤立的。这意味着不能 (也不应该) 在子组件的模板内直接引用父组件的数据。父组件的数据需要通过 prop 才能下发到子组件中。
+
+也就是props是子组件访问父组件数据的唯一接口。
+```javascript
+props:{
+  attrtype:{
+       type: Number,
+       default:1
+     }
+},
+```
 
