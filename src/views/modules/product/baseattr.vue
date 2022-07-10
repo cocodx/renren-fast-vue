@@ -87,8 +87,9 @@
 
 <script>
   import Category from "../common/category";
+  import AddOrUpdate from "./attr-add-or-update";
   export default {
-    components:{Category},
+    components:{Category,AddOrUpdate},
     props:{
       attrtype:{
         type: Number,
@@ -115,6 +116,12 @@
       this.getDataList()
     },
     methods:{
+      addOrUpdateHandle(id){
+        this.addOrUpdateVisible = true;
+        this.$nextTick(() => {
+          this.$refs.addOrUpdate.init(id);
+        });
+      },
       //感知树节点被点击
       treenodeClick(data,node,component){
         console.log("感知到category的节点被点击：",data,node,component)
