@@ -34,6 +34,7 @@
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
+import PubSub from 'pubsub-js';
 import CategoryCascader from "../common/category-cascader";
 import BrandSelect from "../common/brand-select";
 import Spuinfo from "./spuinfo";
@@ -84,12 +85,10 @@ export default {
   beforeUpdate() {}, //生命周期 - 更新之前
   updated() {}, //生命周期 - 更新之后
   beforeDestroy() {
-     PubSub.unsubscribe(this.catPathSub); 
-     PubSub.unsubscribe(this.brandIdSub); 
+     PubSub.unsubscribe(this.catPathSub);
+     PubSub.unsubscribe(this.brandIdSub);
   }, //生命周期 - 销毁之前
   destroyed() {}, //生命周期 - 销毁完成
   activated() {} //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
-<style scoped>
-</style>

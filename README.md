@@ -53,3 +53,11 @@ props:{
 },
 ```
 
+##### 引入PubSub.js，实现父子组件通信
+```javascript
+npm i pubsub-js
+
+import PubSub from 'pubsub-js'
+Vue.use(PubSub)
+```
+
