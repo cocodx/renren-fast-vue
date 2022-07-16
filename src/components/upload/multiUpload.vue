@@ -95,12 +95,19 @@ export default {
       });
     },
     handleUploadSuccess(res, file) {
-      this.fileList.push({
-        name: file.name,
-        // url: this.dataObj.host + "/" + this.dataObj.dir + "/" + file.name； 替换${filename}为真正的文件名
-        url: this.dataObj.host + "/" + this.dataObj.key.replace("${filename}",file.name)
+      this.$http({
+        url: this.$http.adornUrl("/minio/download/getPreviewFileUrlNew?fileName="+file.name),
+        method: "get"
+      }).then(({ data }) => {
+        this.fileList.push({name: file.name, url: data.url });
+        this.emitInput(this.fileList);
       });
-      this.emitInput(this.fileList);
+      // this.fileList.push({
+      //   name: file.name,
+      //   // url: this.dataObj.host + "/" + this.dataObj.dir + "/" + file.name； 替换${filename}为真正的文件名
+      //   url: this.dataObj.host + "/" + this.dataObj.key.replace("${filename}",file.name)
+      // });
+      // this.emitInput(this.fileList);
     },
     handleExceed(files, fileList) {
       this.$message({

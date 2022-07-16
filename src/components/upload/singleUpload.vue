@@ -96,12 +96,12 @@
       handleUploadSuccess(res, file) {
         console.log("上传成功...",res,file)
         this.$http({
-          url: this.$http.adornUrl("/minio/download/getPreviewFileUrl?fileName="+file.name),
+          url: this.$http.adornUrl("/minio/download/getPreviewFileUrlNew?fileName="+file.name),
           method: "get"
         }).then(({ data }) => {
           this.showFileList = true;
           this.fileList.pop();
-          this.fileList.push({name: file.name, url: data });
+          this.fileList.push({name: file.name, url: data.url });
           this.emitInput(this.fileList[0].url);
         });
 
